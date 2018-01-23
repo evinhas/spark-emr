@@ -17,7 +17,11 @@ displays useful information about the application. This includes:
 
 You can access this interface by simply opening `http://<driver-node>:4040` in a web browser.
 If multiple SparkContexts are running on the same host, they will bind to successive ports
-beginning with 4040 (4041, 4042, etc).
+beginning with 4040 (4041, 4042, etc). Bear in mind that the maximum number of retring for binding a port after stop is controlled by the parameter
+
+spark.port.maxRetries
+
+By default, its value is "16" so you need to update the spark-defaults.conf to a bigger number if you needs to execute in parallel more SparkContexts than 16.
 
 Note that this information is only available for the duration of the application by default.
 To view the web UI after the fact, set `spark.eventLog.enabled` to true before starting the
